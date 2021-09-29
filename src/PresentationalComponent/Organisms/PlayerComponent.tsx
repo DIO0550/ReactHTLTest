@@ -17,12 +17,20 @@ export default class PlayerComponent extends React.Component {
     audioElement.play();
   }
 
-  static stop() {}
+  static stop() {
+    const audioElement = document.getElementById('audio') as HTMLMediaElement;
+    audioElement.pause();
+  }
+
+  componentDidMount() {
+    PlayerComponent.loadAudio();
+    PlayerComponent.play();
+  }
 
   render() {
     return (
       <div>
-        <audio muted id="audio" />
+        <audio id="audio" />
         <button type="button" id="play-button" onClick={PlayerComponent.play}>再生</button>
         <button type="button" id="stop-button" onClick={PlayerComponent.stop}>停止</button>
       </div>
